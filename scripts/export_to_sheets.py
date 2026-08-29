@@ -19,7 +19,13 @@ SCOPES = [
 ]
 
 def get_sheets_client():
-    creds = Credentials.from_service_account_file(CREDS_PATH, scopes=SCOPES)
+    # Kalau ada GOOGLE_SHEETS_CREDS (di GitHub Actions), pakai itu
+    if CREDS_JSON:
+        creds_dict = json.loads(CREDS_JSON)
+        creds = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
+    else:
+        # Lokal — pakai file credentials.json
+        creds = Credentials.from_service_account_file(CREDS_PATH, scopes=SCOPES)
     return gspread.authorize(creds)
 
 def get_db_connection():
