@@ -11,7 +11,6 @@ load_dotenv()
 
 DB_URL         = os.getenv("SUPABASE_DB_URL")
 SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
-CREDS_PATH     = os.getenv("GOOGLE_SHEETS_CREDS_PATH", "credentials.json")
 
 SCOPES = [
     "https://spreadsheets.google.com/feeds",
@@ -19,13 +18,15 @@ SCOPES = [
 ]
 
 def get_sheets_client():
-    # Kalau ada GOOGLE_SHEETS_CREDS (di GitHub Actions), pakai itu
-    if CREDS_JSON:
-        creds_dict = json.loads(CREDS_JSON)
+    creds_json = os.getenv("GOOGLE_SHEETS_CREDS")
+    creds_path = os.getenv("GOOGLE_SHEETS_CREDS_PATH", "credentials.json")
+
+    if creds_json:
+        creds_dict = json.loads(creds_json)
         creds = Credentials.from_service_account_info(creds_dict, scopes=SCOPES)
     else:
-        # Lokal — pakai file credentials.json
-        creds = Credentials.from_service_account_file(CREDS_PATH, scopes=SCOPES)
+        creds = Credentials.from_service_account_file(creds_path, scopes=SCOPES)
+
     return gspread.authorize(creds)
 
 def get_db_connection():
@@ -44,11 +45,9 @@ def export_table(client, sheet_name, query):
     worksheet = client.open_by_key(SPREADSHEET_ID).worksheet(sheet_name)
     worksheet.clear()
 
-    # Convert datetime columns to string
     for col in df.select_dtypes(include=["datetime64", "object"]).columns:
         df[col] = df[col].astype(str)
 
-    # Upload header + data
     data = [df.columns.tolist()] + df.values.tolist()
     worksheet.update(data)
 
@@ -74,7 +73,7 @@ def main():
     export_table(client, "mart_anomaly_signals",
         "SELECT * FROM mart.mart_anomaly_signals ORDER BY detected_at DESC LIMIT 200")
 
-    print("\n✅ Export selesai! Dashboard Looker Studio akan terupdate.")
+    print("\n✅ Export selesai!")
 
 if __name__ == "__main__":
     main()
