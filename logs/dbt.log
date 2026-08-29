@@ -1,0 +1,38 @@
+[0m15:25:11.952765 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DAB47AD2B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DAB49D4200>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DAB49D43B0>]}
+
+
+============================== 15:25:11.966043 | f420c9ad-6188-4838-8b68-d82b42e3d194 ==============================
+[0m15:25:11.966043 [info ] [MainThread]: Running with dbt=1.8.2
+[0m15:25:11.966043 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\YAFI\\.dbt', 'fail_fast': 'False', 'debug': 'False', 'log_path': 'logs', 'version_check': 'True', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt init stock_dbt', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m15:25:11.995311 [debug] [MainThread]: Starter project path: C:\Users\YAFI\AppData\Roaming\Python\Python312\site-packages\dbt\include\starter_project
+[0m15:25:12.028309 [info ] [MainThread]: 
+Your new dbt project "stock_dbt" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m15:25:12.028309 [info ] [MainThread]: Setting up your profile.
+[0m15:27:21.972409 [info ] [MainThread]: Profile stock_dbt written to C:\Users\YAFI\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m15:27:21.972409 [debug] [MainThread]: Command `dbt init` succeeded at 15:27:21.972409 after 130.26 seconds
+[0m15:27:21.972409 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DAB4A034D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DAB483C650>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DAB45418E0>]}
+[0m15:27:21.972409 [debug] [MainThread]: Flushing usage events
+[0m22:56:35.513619 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015FD8338470>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015FDB153CE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015FDB153DA0>]}
+
+
+============================== 22:56:35.568515 | e5a498d2-70f7-443f-aabe-66e90987cdfa ==============================
+[0m22:56:35.568515 [info ] [MainThread]: Running with dbt=1.8.2
+[0m22:56:35.568515 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\YAFI\\.dbt', 'version_check': 'True', 'warn_error': 'None', 'log_path': 'logs', 'debug': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'invocation_command': 'dbt init stock_dbt', 'static_parser': 'True', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m22:56:35.679572 [info ] [MainThread]: A project called stock_dbt already exists here.
+[0m22:56:35.683101 [debug] [MainThread]: Command `dbt init` succeeded at 22:56:35.679572 after 0.52 seconds
+[0m22:56:35.683654 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015FDAA299D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015FDAA2BE60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000015FDAA2AAB0>]}
+[0m22:56:35.685667 [debug] [MainThread]: Flushing usage events

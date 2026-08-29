@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: stg_stock_prices
+    description: "Data harga saham yang sudah dibersihkan + kalkulasi dasar"
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+      - name: trade_date
+        tests:
+          - not_null
+      - name: close_price
+        tests:
+          - not_null
+      - name: volume
+        tests:
+          - not_null
+      - name: price_direction
+        tests:
+          - accepted_values:
+              values: ['up', 'down', 'flat']
+
+  - name: stg_stock_info
+    description: "Info perusahaan yang sudah dibersihkan"
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+          - unique
+      - name: sector
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Perbankan', 'Telekomunikasi', 'Energi', 'Consumer', 'Teknologi', 'Properti', 'Infrastruktur', 'Index']

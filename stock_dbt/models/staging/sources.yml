@@ -1,0 +1,34 @@
+version: 2
+
+sources:
+  - name: raw
+    database: postgres
+    schema: raw
+    tables:
+      - name: stock_prices
+        description: "Data harga saham synthetic harian"
+        columns:
+          - name: ticker
+            description: "Kode saham"
+          - name: trade_date
+            description: "Tanggal trading"
+          - name: open
+            description: "Harga pembukaan"
+          - name: high
+            description: "Harga tertinggi"
+          - name: low
+            description: "Harga terendah"
+          - name: close
+            description: "Harga penutupan"
+          - name: volume
+            description: "Volume trading"
+
+      - name: stock_info
+        description: "Info perusahaan dan metadata saham"
+        columns:
+          - name: ticker
+            description: "Kode saham"
+          - name: company_name
+            description: "Nama perusahaan"
+          - name: sector
+            description: "Sektor industri"
