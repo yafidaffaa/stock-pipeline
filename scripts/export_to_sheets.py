@@ -42,6 +42,9 @@ def export_table(client, sheet_name, query):
         print(f"  ⚠️  {sheet_name}: tidak ada data")
         return
 
+    # Ganti NaN dengan string kosong agar JSON compliant
+    df = df.fillna("")
+
     worksheet = client.open_by_key(SPREADSHEET_ID).worksheet(sheet_name)
     worksheet.clear()
 
