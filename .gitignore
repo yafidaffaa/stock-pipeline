@@ -6,14 +6,11 @@ credentials.json
 stock_dbt/target/
 stock_dbt/logs/
 stock_dbt/.user.yml
-stock_dbt/profiles.yml
 
 # Python
 __pycache__/
 *.py[cod]
 *.pyo
-scripts/temp_prices.csv
-scripts/temp_info.csv
 
 # VSCode
 .vscode/

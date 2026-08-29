@@ -1,0 +1,21 @@
+stock_dbt:
+  target: ci
+  outputs:
+    dev:
+      type: postgres
+      host: db.fjoizcrivwjyzkjtrreq.supabase.co
+      port: 5432
+      user: postgres
+      password: "{{ env_var('DBT_PASSWORD') }}"
+      dbname: postgres
+      schema: staging
+      threads: 1
+    ci:
+      type: postgres
+      host: "{{ env_var('DBT_HOST') }}"
+      port: 5432
+      user: "{{ env_var('DBT_USER') }}"
+      password: "{{ env_var('DBT_PASSWORD') }}"
+      dbname: "{{ env_var('DBT_DBNAME') }}"
+      schema: staging
+      threads: 1

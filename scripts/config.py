@@ -1,15 +1,14 @@
 """
 config.py
 Konfigurasi bersama untuk seluruh script pipeline.
-Dipakai oleh fetch_stock_data.py, load_to_supabase.py, dan export_to_sheets.py.
 """
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
-# --- Daftar 20 saham BEI yang ditrack + sektor (sesuai PRD Section 4.1) ---
-# Sektor di sini adalah klasifikasi kita sendiri, BUKAN diambil dari Yahoo Finance,
-# supaya konsisten dengan skema mart_sector_performance di dbt.
+load_dotenv()
+
 TICKERS = {
     "BBCA.JK": "Perbankan",
     "BBRI.JK": "Perbankan",
@@ -33,16 +32,14 @@ TICKERS = {
     "^JKSE": "Index",
 }
 
-# --- Folder tempat menyimpan CSV mentah hasil fetch, sebelum di-load ke Supabase ---
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 DATA_DIR.mkdir(exist_ok=True)
 
 STOCK_PRICES_CSV = DATA_DIR / "stock_prices.csv"
-STOCK_INFO_CSV = DATA_DIR / "stock_info.csv"
+STOCK_INFO_CSV   = DATA_DIR / "stock_info.csv"
 
-# --- Koneksi database (dibaca dari .env / GitHub Actions secret) ---
-SUPABASE_DB_URL = os.getenv("postgresql://postgres:StockPipeline2026!@db.fjoizcrivwjyzkjtrreq.supabase.co:5432/postgres")
+# Dibaca dari .env — tidak pernah hardcode di sini
+SUPABASE_DB_URL = os.getenv("SUPABASE_DB_URL")
 
-# --- Delay antar request ke Yahoo Finance, biar tidak kena rate limit ---
 REQUEST_DELAY_SECONDS = 1.0
