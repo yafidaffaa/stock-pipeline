@@ -26,7 +26,6 @@ STOCKS = {
 }
 
 def get_last_close(cursor, ticker):
-    """Ambil harga close terakhir dari database"""
     cursor.execute("""
         SELECT close FROM raw.stock_prices
         WHERE ticker = %s
@@ -34,7 +33,7 @@ def get_last_close(cursor, ticker):
         LIMIT 1
     """, (ticker,))
     result = cursor.fetchone()
-    return result[0] if result else None
+    return float(result[0]) if result else None
 
 def get_last_date(cursor):
     """Ambil tanggal terakhir di database"""
