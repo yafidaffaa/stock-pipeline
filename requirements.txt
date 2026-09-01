@@ -8,3 +8,4 @@ dbt-postgres==1.8.2
 python-dotenv==1.0.1
 sqlalchemy==2.0.30
 numpy==1.26.4
+pytz==2024.1
