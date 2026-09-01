@@ -60,7 +60,10 @@ def generate_ohlcv(prev_close, volatility, base_volume=50_000_000):
     }
 
 def main():
-    today = date.today()
+    import pytz
+    from datetime import datetime
+    wib = pytz.timezone('Asia/Jakarta')
+    today = datetime.now(wib).date()
 
     # Skip kalau weekend
     if today.weekday() >= 5:
