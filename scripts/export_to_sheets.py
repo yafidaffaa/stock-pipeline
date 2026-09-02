@@ -53,14 +53,14 @@ def export_table(client, sheet_name, query, max_retries=3):
     for attempt in range(max_retries):
         try:
             worksheet = client.open_by_key(SPREADSHEET_ID).worksheet(sheet_name)
-            worksheet.clear()
-            worksheet.update(data)
+            # Pakai update langsung dari A1 tanpa clear dulu
+            worksheet.update(range_name="A1", values=data)
             print(f"  ✅  {sheet_name}: {len(df)} baris berhasil diexport")
             return
         except Exception as e:
             print(f"  ⚠️  Attempt {attempt + 1} gagal: {e}")
             if attempt < max_retries - 1:
-                time.sleep(30)
+                time.sleep(10)
             else:
                 print(f"  ❌  {sheet_name}: gagal setelah {max_retries} attempts")
 
