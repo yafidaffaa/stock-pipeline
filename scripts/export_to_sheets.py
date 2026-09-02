@@ -72,16 +72,16 @@ def main():
     client = get_sheets_client()
 
     export_table(client, "mart_daily_summary",
-        "SELECT * FROM mart.mart_daily_summary ORDER BY summary_date DESC LIMIT 90")
+        "SELECT * FROM mart.mart_daily_summary ORDER BY summary_date DESC LIMIT 1000")
 
     export_table(client, "mart_sector_performance",
-        "SELECT * FROM mart.mart_sector_performance ORDER BY trade_date DESC LIMIT 500")
+        "SELECT * FROM mart.mart_sector_performance ORDER BY trade_date DESC LIMIT 10000")
 
     export_table(client, "mart_stock_metrics",
-        "SELECT * FROM mart.mart_stock_metrics ORDER BY trade_date DESC LIMIT 500")
+        "SELECT * FROM mart.mart_stock_metrics ORDER BY trade_date DESC LIMIT 10000")
 
     export_table(client, "mart_anomaly_signals",
-        "SELECT * FROM mart.mart_anomaly_signals ORDER BY detected_at DESC LIMIT 200")
+        "SELECT * FROM mart.mart_anomaly_signals ORDER BY detected_at DESC LIMIT 5000")
 
     print("\n✅ Export selesai!")
 
