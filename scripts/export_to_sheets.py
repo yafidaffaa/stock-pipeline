@@ -32,7 +32,7 @@ def get_sheets_client():
 def get_db_connection():
     return psycopg2.connect(DB_URL)
 
-def export_table(client, sheet_name, query):
+def export_table(client, sheet_name, query, max_retries=3):
     print(f"  Exporting {sheet_name}...")
     conn = get_db_connection()
     df = pd.read_sql(query, conn)
@@ -42,19 +42,26 @@ def export_table(client, sheet_name, query):
         print(f"  ⚠️  {sheet_name}: tidak ada data")
         return
 
-    # Ganti NaN dengan string kosong agar JSON compliant
     df = df.fillna("")
-
-    worksheet = client.open_by_key(SPREADSHEET_ID).worksheet(sheet_name)
-    worksheet.clear()
 
     for col in df.select_dtypes(include=["datetime64", "object"]).columns:
         df[col] = df[col].astype(str)
 
     data = [df.columns.tolist()] + df.values.tolist()
-    worksheet.update(data)
 
-    print(f"  ✅  {sheet_name}: {len(df)} baris berhasil diexport")
+    for attempt in range(max_retries):
+        try:
+            worksheet = client.open_by_key(SPREADSHEET_ID).worksheet(sheet_name)
+            worksheet.clear()
+            worksheet.update(data)
+            print(f"  ✅  {sheet_name}: {len(df)} baris berhasil diexport")
+            return
+        except Exception as e:
+            print(f"  ⚠️  Attempt {attempt + 1} gagal: {e}")
+            if attempt < max_retries - 1:
+                time.sleep(10)
+            else:
+                print(f"  ❌  {sheet_name}: gagal setelah {max_retries} attempts")
 
 def main():
     print("=" * 50)
