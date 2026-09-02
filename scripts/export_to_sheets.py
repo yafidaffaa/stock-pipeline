@@ -5,6 +5,7 @@ import psycopg2
 from datetime import datetime
 import os
 import json
+import time
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -59,7 +60,7 @@ def export_table(client, sheet_name, query, max_retries=3):
         except Exception as e:
             print(f"  ⚠️  Attempt {attempt + 1} gagal: {e}")
             if attempt < max_retries - 1:
-                time.sleep(10)
+                time.sleep(30)
             else:
                 print(f"  ❌  {sheet_name}: gagal setelah {max_retries} attempts")
 
